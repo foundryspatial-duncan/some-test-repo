@@ -1,9 +1,23 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('do something') {
       steps {
-        sh 'echo \'hello, this is a shell script...\''
+        parallel(
+          "do something": {
+            echo 'hello world'
+            
+          },
+          "": {
+            sleep 5
+            
+          }
+        )
+      }
+    }
+    stage('print message') {
+      steps {
+        echo 'slept 5 seconds'
       }
     }
   }
